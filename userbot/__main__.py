@@ -60,6 +60,12 @@ except Exception as e:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
+if not BOTLOG_CHATID:
+    LOGS.info(
+        "BOTLOG_CHATID Vars tidak terisi, Memulai Membuat Grup Otomatis..."
+    )
+    bot.loop.run_until_complete(autopilot())
+
 LOGS.info(f"Python Version - {python_version()}")
 LOGS.info(f"Telethon Version - {version.__version__}")
 LOGS.info(f"PyTgCalls Version - {pytgcalls.__version__}")
@@ -74,14 +80,6 @@ LOGS.info(
 
 LOGS.info(
     f"✨ Ayiin-Userbot Version - {BOT_VER} [✧ 𝙰𝚈𝙸𝙸𝙽-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 𝙳𝙸𝙰𝙺𝚃𝙸𝙵𝙺𝙰𝙽 ✧]")
-
-
-if not BOTLOG_CHATID:
-    LOGS.info(
-        "BOTLOG_CHATID Vars tidak terisi, Memulai Membuat Grup Otomatis..."
-    )
-    bot.loop.run_until_complete(autopilot())
-
 
 async def ayiin_userbot_on():
     try:
@@ -108,7 +106,7 @@ async def ayiin_userbot_on():
             anonymous=False,
             manage_call=True,
         )
-        await bot(EditAdminRequest(int(BOTLOG_CHATID), BOT_USERNAME, rights, "Assistant"))
+        await bot(EditAdminRequest(int(BOTLOG_CHATID), BOT_USERNAME, rights, "Assɪsᴛᴀɴᴛ Aʏɪɪɴ"))
         logo = "userbot/resources/logo.jpg"
         await bot(EditPhotoRequest(BOTLOG_CHATID, await bot.upload_file(logo)))
     except BaseException:

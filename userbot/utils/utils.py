@@ -185,7 +185,7 @@ async def autopilot():
     try:
         r = await bot(
             CreateChannelRequest(
-                title="⍟ Aʏɪɪɴ Lᴏɢs ⍟",
+                title="⍟ Aʏɪɪɴ-Usᴇʀʙᴏᴛ Lᴏɢs ⍟",
                 about="» Group log Created by: Ayiin-Userbot\n\n» Support : @AyiinXdSupport\n» Support: @AyiinSupport",
                 megagroup=True,
             ),

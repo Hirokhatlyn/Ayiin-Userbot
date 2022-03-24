@@ -634,7 +634,7 @@ async def kbg(remob):
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
         with io.BytesIO(output_file_name.content) as remove_bg_image:
-            remove_bg_image.name = "removed_bg.png"
+            remove_bg_image.name = "ayiin_bg.png"
             await remob.client.send_file(
                 remob.chat_id,
                 remove_bg_image,
@@ -893,7 +893,7 @@ CMD_HELP.update(
 
 CMD_HELP.update(
     {
-        "removebg": "**Plugin : **`removebg`\
+        "removebg": f"**Plugin : **`removebg`\
         \n\n  •  **Syntax :** `{cmd}rbg` <Tautan ke Gambar> atau balas gambar apa pun (Peringatan: tidak berfungsi pada stiker.)\
         \n  •  **Function : **Menghapus latar belakang gambar, menggunakan API remove.bg\
     "
