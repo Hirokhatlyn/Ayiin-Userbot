@@ -13,7 +13,7 @@ from telethon.tl.types import InputMessagesFilterPhotos
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, owner
-from userbot.utils import ayiin_cmd
+from userbot.utils import ayiin_cmd, edit_or_reply
 
 
 # ========================×========================
@@ -23,6 +23,7 @@ from userbot.utils import ayiin_cmd
 
 @ayiin_cmd(pattern="couple(?: |$)(.*)")
 async def couple(bucin):
+    await edit_or_reply(bucin, "`Processing Tod...`")
     try:
         bucinan = [
             coupl
