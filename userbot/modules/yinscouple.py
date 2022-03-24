@@ -35,7 +35,7 @@ async def couple(bucin):
         await bucin.client.send_file(
             bucin.chat_id,
             file=random.choice(bucinan),
-            caption=f" Ambil Ni Pp   Bucin Lu [{owner}](tg://user?id={cang.id})",
+            caption=f" Ambil Ni Pp Bucin Lu [{owner}](tg://user?id={cang.id})",
         )
         await bucin.delete()
     except Exception:
