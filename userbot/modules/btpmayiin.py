@@ -16,7 +16,7 @@
 from datetime import datetime as dt
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP
 from userbot.utils import ayiin_cmd, edit_or_reply
 
 
@@ -47,7 +47,7 @@ async def listbtpm(list):
                      f"**-𝙰𝙳𝙼𝙸𝙽 : **\n"
                      f"**• 𝟶𝟾.𝟶𝟶 - 𝟷𝟶.𝟶𝟶 : **\n"
                      f"**-𝙰𝙳𝙼𝙸𝙽 : **\n"
-                     f"**• 𝟷𝟶.𝟶𝟶 - 𝟷𝟸.𝟶𝟶 : **\n"                               
+                     f"**• 𝟷𝟶.𝟶𝟶 - 𝟷𝟸.𝟶𝟶 : **\n"
                      f"**-𝙰𝙳𝙼𝙸𝙽 : **\n"
                      f"**----------------------------------------------**\n"
                      f"**• 𝟷𝟸.𝟶𝟶 - 𝟷𝟺.𝟶𝟶 : **\n"
