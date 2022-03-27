@@ -164,7 +164,8 @@ async def autobot():
                 BOTLOG_CHATID,
                 f"**BERHASIL MEMBUAT ASSISTANT BOT LU DENGAN USERNAME @{username}**",
             )
-            LOGS.info(f"BERHASIL MEMBUAT ASSISTANT BOT LU DENGAN USERNAME @{username}")
+            LOGS.info(
+                f"BERHASIL MEMBUAT ASSISTANT BOT LU DENGAN USERNAME @{username}")
             await bot.send_message(
                 BOTLOG_CHATID,
                 "**SEDANG MERESTART USERBOT HARAP TUNGGU KONTOL.**",
@@ -207,7 +208,8 @@ async def autobot():
             BOTLOG_CHATID,
             f"**BERHASIL MEMBUAT ASSISTANT BOT LU DENGAN USERNAME @{username}**",
         )
-        LOGS.info(f"BERHASIL MEMBUAT ASSISTANT BOT DENGAN USERNAME @{username}")
+        LOGS.info(
+            f"BERHASIL MEMBUAT ASSISTANT BOT DENGAN USERNAME @{username}")
         await bot.send_message(
             BOTLOG_CHATID,
             "**SEDANG MERESTART USERBOT HARAP TUNGGU KONTOL.**",
@@ -285,4 +287,3 @@ def remove_plugin(shortname):
                     del bot._event_builders[i]
     except BaseException:
         raise ValueError
-
