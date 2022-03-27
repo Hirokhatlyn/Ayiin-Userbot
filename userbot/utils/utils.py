@@ -285,3 +285,4 @@ def remove_plugin(shortname):
                     del bot._event_builders[i]
     except BaseException:
         raise ValueError
+
