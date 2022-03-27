@@ -28,7 +28,9 @@ from telethon.tl.types import ChatAdminRights
 from telethon import version
 
 
-from userbot import BOT_TOKEN, BOT_USERNAME, BOT_VER, BOTLOG_CHATID
+from userbot import BOT_VER as ubotversion
+from userbot import BOT_TOKEN, BOT_USERNAME, DEFAULT, BOTLOG_CHATID
+from userbot.modules.gcast import GCAST_BLACKLIST as GBL
 from userbot import CMD_HANDLER as cmd
 from userbot import DEVS, LOGS, blacklistayiin, bot, branch, call_py
 from userbot.modules import ALL_MODULES
@@ -50,7 +52,17 @@ try:
         sys.exit(1)
     if 1700405732 not in DEVS:
         LOGS.warning(
-            f"EOL\nAyiin-UserBot v{BOT_VER}, Copyright © 2021-2022 𝙰𝚈𝙸𝙸𝙽𝚇𝙳• <https://github.com/AyiinXd>"
+            f"EOL\nAyiin-UserBot v{ubotversion}, Copyright © 2021-2022 AyiinXd• <https://github.com/AyiinXd>"
+        )
+        sys.exit(1)
+    if -1001675396283 not in GBL:
+        LOGS.warning(
+            f"EOL\nAyiin-UserBot v{ubotversion}, Copyright © 2021-2022 AyiinXd• <https://github.com/AyiinXd>"
+        )
+        sys.exit(1)
+    if 1700405732 not in DEFAULT:
+        LOGS.warning(
+            f"EOL\nAyiin-UserBot v{ubotversion}, Copyright © 2021-2022 AyiinXd• <https://github.com/AyiinXd>"
         )
         sys.exit(1)
 except Exception as e:
@@ -69,17 +81,9 @@ if not BOTLOG_CHATID:
 LOGS.info(f"Python Version - {python_version()}")
 LOGS.info(f"Telethon Version - {version.__version__}")
 LOGS.info(f"PyTgCalls Version - {pytgcalls.__version__}")
-
-LOGS.info(
-    f"STRING_SESSION detected!\n┌ First Name: {name}\n└ User ID: {uid}\n——"
-)
-
-LOGS.info(
-    f"Jika {name} Membutuhkan Bantuan, Silahkan Tanyakan di Grup https://t.me/AyiinXdSupport"
-)
-
-LOGS.info(
-    f"✨ Ayiin-Userbot Version - {BOT_VER} [✧ 𝙰𝚈𝙸𝙸𝙽-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 𝙳𝙸𝙰𝙺𝚃𝙸𝙵𝙺𝙰𝙽 ✧]")
+LOGS.info(f"STRING_SESSION detected!\n┌ First Name: {name}\n└ User ID: {uid}\n——")
+LOGS.info(f"Jika {name} Membutuhkan Bantuan, Silahkan Tanyakan di Grup https://t.me/AyiinXdSupport")
+LOGS.info(f"✨ Ayiin-Userbot Version - {ubotversion} [✨ BERHASIL DIAKTIFKAN ✨]")
 
 
 async def ayiin_userbot_on():
@@ -87,7 +91,7 @@ async def ayiin_userbot_on():
         if BOTLOG_CHATID != 0:
             await bot.send_message(
                 BOTLOG_CHATID,
-                f"**✧ 𝙰𝚈𝙸𝙸𝙽-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 ✧**\n**✧ 𝙱𝙴𝚁𝙷𝙰𝚂𝙸𝙻 𝙳𝙸 𝙰𝙺𝚃𝙸𝙵𝙺𝙰𝙽 ✧**\n━━\n➠ **𝚄𝚂𝙴𝚁𝙱𝙾𝚃 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 -** `{BOT_VER}`\n➠ `@{branch}`\n➠ **𝙺𝙴𝚃𝙸𝙺** `{cmd}alive` **𝚄𝙽𝚃𝚄𝙺 𝙼𝙴𝙽𝙶𝙴𝙲𝙴𝙺 𝙱𝙾𝚃**\n━━\n➠ **𝙼𝙰𝙽𝙰𝙶𝙴𝙳 𝙱𝚈** : {name}",
+                f"✨ **Ayiin-Userbot Berhasil Di Aktifkan**\n━━\n➠ **Userbot Version -** `{ubotversion}`\n➠ `@{branch}`\n➠ **Ketik** `{cmd}alive` **Untuk Mengecek Bot**\n━━\n✨ **Managed by** : {name}",
             )
 
     except Exception as e:
@@ -116,6 +120,8 @@ async def ayiin_userbot_on():
 
 bot.loop.run_until_complete(checking())
 bot.loop.run_until_complete(ayiin_userbot_on())
+if not BOTLOG_CHATID:
+    bot.loop.run_until_complete(autopilot())
 if not BOT_TOKEN:
     bot.loop.run_until_complete(autobot())
 idle()
