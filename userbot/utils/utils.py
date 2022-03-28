@@ -1,6 +1,8 @@
 # Credits: @mrismanaziz
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # t.me/SharingUserbot & t.me/Lunatic0de
+#
+# autopilot by @kenkan
 
 import asyncio
 import importlib

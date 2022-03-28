@@ -31,6 +31,7 @@ from telethon import version
 from userbot import BOT_VER as ubotversion
 from userbot import BOT_TOKEN, BOT_USERNAME, DEFAULT, BOTLOG_CHATID
 from userbot.modules.gcast import GCAST_BLACKLIST as GBL
+from userbot.core.git import git
 from userbot import CMD_HANDLER as cmd
 from userbot import DEVS, LOGS, blacklistayiin, bot, branch, call_py
 from userbot.modules import ALL_MODULES
@@ -78,6 +79,7 @@ if not BOTLOG_CHATID:
     )
     bot.loop.run_until_complete(autopilot())
 
+git()
 LOGS.info(f"Python Version - {python_version()}")
 LOGS.info(f"Telethon Version - {version.__version__}")
 LOGS.info(f"PyTgCalls Version - {pytgcalls.__version__}")

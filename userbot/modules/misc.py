@@ -25,7 +25,7 @@ from PIL import Image
 
 from userbot import BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME, SUDO_USERS
+from userbot import CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME
 from userbot.utils import edit_or_reply, ayiin_cmd, time_formatter
 
 # ================= CONSTANT =================
@@ -40,10 +40,8 @@ useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) 
 opener.addheaders = [("User-agent", useragent)]
 
 
-@ayiin_cmd(pattern="sleep ([0-9]+)$")
+@ayiin_cmd(pattern="sleep ([0-9]+)$", allow_sudo=False)
 async def sleepybot(time):
-    if time.sender_id in SUDO_USERS:
-        return
     counter = int(time.pattern_match.group(1))
     xx = await edit_or_reply(time, "`Saya mengantuk dan tertidur...`")
     if BOTLOG_CHATID:
@@ -56,11 +54,9 @@ async def sleepybot(time):
     await xx.edit("**Oke, Saya siap membantu mu**")
 
 
-@ayiin_cmd(pattern="shutdown$")
+@ayiin_cmd(pattern="shutdown$", allow_sudo=False)
 async def shutdown_bot(event):
     if event.fwd_from:
-        return
-    if event.sender_id in SUDO_USERS:
         return
     if BOTLOG_CHATID:
         await event.client.send_message(
@@ -75,10 +71,8 @@ async def shutdown_bot(event):
         sys.exit(0)
 
 
-@ayiin_cmd(pattern="restart$")
+@ayiin_cmd(pattern="restart$", allow_sudo=False)
 async def restart_bot(event):
-    if event.sender_id in SUDO_USERS:
-        return
     await edit_or_reply(event, "**᯽ 𝙰𝚈𝙸𝙸𝙽-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 ᯽ Berhasil di Restart**")
     if BOTLOG_CHATID:
         await event.client.send_message(

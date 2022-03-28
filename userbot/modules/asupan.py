@@ -1,18 +1,21 @@
 # 🍀 © @tofik_dn
+# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
+# t.me/SharingUserbot & t.me/Lunatic0de
 # ⚠️ Do not remove credits
 
+from secrets import choice
 
+from telethon.tl.types import InputMessagesFilterVideo, InputMessagesFilterVoice
+
+from userbot import BLACKLIST_CHAT
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
-from userbot.utils import ayiin_cmd
-import random
-from userbot import owner
-from telethon.tl.types import InputMessagesFilterVideo
-from telethon.tl.types import InputMessagesFilterVoice
+from userbot.utils import ayiin_cmd, edit_or_reply
 
 
 @ayiin_cmd(pattern="asupan$")
 async def _(event):
+    xx = await edit_or_reply(event, "`Tunggu Sebentar...`")
     try:
         asupannya = [
             asupan
@@ -20,35 +23,56 @@ async def _(event):
                 "@tedeasupancache", filter=InputMessagesFilterVideo
             )
         ]
-        aing = await event.client.get_me()
         await event.client.send_file(
-            event.chat_id,
-            file=random.choice(asupannya),
-            caption=f"Nih kak asupannya [{owner}](tg://user?id={aing.id})",
+            event.chat_id, file=choice(asupannya), reply_to=event.reply_to_msg_id
         )
-        await event.delete()
+        await xx.delete()
     except Exception:
-        await event.edit("**Maaf tod tidak bisa menemukan video asupan.**")
+        await xx.edit("**Tidak bisa menemukan video asupan.**")
 
 
-@ayiin_cmd(pattern="desah$")
+@ayiin_cmd(pattern="desahcewe$")
 async def _(event):
+    if event.chat_id in BLACKLIST_CHAT:
+        return await edit_or_reply(
+            event, "**Perintah ini Dilarang digunakan di Group ini**"
+        )
+    xx = await edit_or_reply(event, "`Tunggu Sebentar...`")
     try:
-        desahnya = [
+        desahcewe = [
             desah
             async for desah in event.client.iter_messages(
-                "@DESAHANFCE", filter=InputMessagesFilterVoice
+                "@desahancewesangesange", filter=InputMessagesFilterVoice
             )
         ]
-        aing = await event.client.get_me()
         await event.client.send_file(
-            event.chat_id,
-            file=random.choice(desahnya),
-            caption=f"Nih kak desahannya [{owner}](tg://user?id={aing.id})",
+            event.chat_id, file=choice(desahcewe), reply_to=event.reply_to_msg_id
         )
-        await event.delete()
+        await xx.delete()
     except Exception:
-        await event.edit("**Maaf tod tidak bisa menemukan desahan.**")
+        await xx.edit("**Tidak bisa menemukan desahan cewe.**")
+
+
+@ayiin_cmd(pattern="desahcowo$")
+async def _(event):
+    if event.chat_id in BLACKLIST_CHAT:
+        return await edit_or_reply(
+            event, "**Perintah ini Dilarang digunakan di Group ini**"
+        )
+    xx = await edit_or_reply(event, "`Tunggu Sebentar...`")
+    try:
+        desahcowo = [
+            desah
+            async for desah in event.client.iter_messages(
+                "@desahancowokkkk", filter=InputMessagesFilterVoice
+            )
+        ]
+        await event.client.send_file(
+            event.chat_id, file=choice(desahcowo), reply_to=event.reply_to_msg_id
+        )
+        await xx.delete()
+    except Exception:
+        await xx.edit("**Tidak bisa menemukan desahan cowo.**")
 
 
 CMD_HELP.update(
@@ -56,8 +80,10 @@ CMD_HELP.update(
         "asupan": f"**Plugin : **`asupan`\
         \n\n  •  **Syntax :** `{cmd}asupan`\
         \n  •  **Function : **Untuk Mengirim video asupan secara random.\
-        \n\n  •  **Syntax :** `{cmd}desah`\
-        \n  •  **Function : **Untuk Mengirim voice desah secara random.\
+        \n\n  •  **Syntax :** `{cmd}desahcowo`\
+        \n  •  **Function : **Untuk Mengirim voice desah cowo secara random.\
+        \n\n  •  **Syntax :** `{cmd}desahcewe`\
+        \n  •  **Function : **Untuk Mengirim voice desah cewe secara random.\
     "
     }
 )

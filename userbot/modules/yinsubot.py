@@ -1,13 +1,19 @@
 # Copyright (C) 2021 Kyy - Userbot
 # Created by Kyy
 # Jangan hapus credit Anj!!!
+#
+# Recode by : @AyiinXd
+
+# ========================×========================
+#            Jangan Hapus Credit Ngentod
+# ========================×========================
 
 
 from time import sleep
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
-from userbot.utils import edit_or_reply, ayiin_cmd
+from userbot.utils import ayiin_cmd, edit_or_reply
 
 
 @ayiin_cmd(pattern=r"sadboy(?: |$)(.*)")

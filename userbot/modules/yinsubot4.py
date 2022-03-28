@@ -1,3 +1,13 @@
+# Ayiin - Userbot
+# Copyright (C) 2022-2023 @AyiinXd
+#
+# This file is a part of < https://github.com/AyiinXd/Ayiin-Userbot >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/AyiinXd/Ayiin-Userbot/blob/main/LICENSE/>.
+#
+# FROM Ayiin-Userbot <https://github.com/AyiinXd/Ayiin-Userbot>
+# t.me/AyiinXdSupport & t.me/AyiinSupport
+
 from time import sleep
 
 from userbot import BLACKLIST_CHAT
@@ -5,6 +15,10 @@ from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
 from userbot.utils import ayiin_cmd, edit_or_reply, edit_delete
 
+
+# ========================×========================
+#            Jangan Hapus Credit Ngentod
+# ========================×========================
 
 @ayiin_cmd(pattern=r"ywc(?: |$)(.*)")
 async def _(event):

@@ -11,9 +11,8 @@ from validators.url import url
 from wget import download
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import ayiin_cmd
-from userbot.utils import bash, deEmojify
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot.utils import ayiin_cmd, bash, deEmojify
 
 
 def convert_toimage(image):
@@ -178,7 +177,7 @@ async def purge():
         pass
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"trump(?: |$)(.*)"))
+@ayiin_cmd(pattern=r"trump(?: |$)(.*)")
 async def trump(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -199,7 +198,7 @@ async def trump(event):
     await purge()
 
 
-@bot.on(ayiin_cmd(pattern=r"modi(?: |$)(.*)", outgoing=True))
+@ayiin_cmd(pattern="modi(?: |$)(.*)")
 async def nekobot(event):
     text = event.pattern_match.group(1)
     reply_to_id = event.message
@@ -219,7 +218,7 @@ async def nekobot(event):
     await purge()
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"cmm(?: |$)(.*)"))
+@ayiin_cmd(pattern=r"cmm(?: |$)(.*)")
 async def cmm(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -240,7 +239,7 @@ async def cmm(event):
     await purge()
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"kanna(?: |$)(.*)"))
+@ayiin_cmd(pattern="kanna(?: |$)(.*)")
 async def kanna(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -261,7 +260,7 @@ async def kanna(event):
     await purge()
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"tweet(?: |$)(.*)"))
+@ayiin_cmd(pattern="tweet(?: |$)(.*)")
 async def tweet(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -290,8 +289,8 @@ async def tweet(event):
     await purge()
 
 
-@bot.on(ayiin_cmd(pattern=r"threat(?: |$)(.*)", outgoing=True))
-async def nekobot(event):
+@ayiin_cmd(pattern=r"threat(?: |$)(.*)")
+async def ngethreat(event):
     replied = await event.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -332,8 +331,8 @@ async def nekobot(event):
     await bot.send_file(event.chat_id, file, reply_to=replied)
 
 
-@bot.on(ayiin_cmd(pattern=r"trash(?: |$)(.*)", outgoing=True))
-async def nekobot(event):
+@ayiin_cmd(pattern="trash(?: |$)(.*)")
+async def ngetrash(event):
     replied = await event.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -374,8 +373,8 @@ async def nekobot(event):
     await bot.send_file(event.chat_id, file, reply_to=replied)
 
 
-@bot.on(ayiin_cmd(pattern=r"trap(?: |$)(.*)", outgoing=True))
-async def nekobot(e):
+@ayiin_cmd(pattern="trap(?: |$)(.*)")
+async def ngetrap(e):
     input_str = e.pattern_match.group(1)
     input_str = deEmojify(input_str)
     if "|" in input_str:
@@ -426,7 +425,7 @@ async def nekobot(e):
 # Ported by @AshSTR
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"fgs ((.*) ; (.*))"))
+@ayiin_cmd(pattern="fgs ((.*) ; (.*))")
 async def FakeGoogleSearch(event):
     """Get a user-customised google search meme!"""
     input_str = event.pattern_match.group(1)
@@ -463,7 +462,7 @@ async def FakeGoogleSearch(event):
     os.remove("downloads/test.jpg")
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"ph(?: |$)(.*)"))
+@ayiin_cmd(pattern="ph(?: |$)(.*)")
 async def phcomment(event):
     try:
         await event.edit("`Processing..`")

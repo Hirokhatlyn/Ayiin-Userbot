@@ -15,7 +15,7 @@ from userbot import CMD_HELP
 from userbot.utils import edit_or_reply, ayiin_cmd, ayiin_handler
 
 
-@ayiin_handler()
+@ayiin_handler(incoming=True)
 async def on_new_message(event):
     # TODO: exempt admins from locks
     name = event.raw_text

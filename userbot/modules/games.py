@@ -1,11 +1,11 @@
 import json
-import random
+from secrets import choice
 
 import requests
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
-from userbot.utils import edit_delete, edit_or_reply, ayiin_cmd
+from userbot.utils import ayiin_cmd, edit_delete, edit_or_reply
 
 category = ["classic", "kids", "party", "hot", "mixed"]
 
@@ -31,11 +31,11 @@ async def tod(event):
     tod = event.pattern_match.group(1)
     if tod == "task":
         xxnx = await edit_or_reply(event, "`Processing...`")
-        tod = random.choice(["truth", "dare"])
+        tod = choice(["truth", "dare"])
     else:
         xxnx = await edit_or_reply(event, f"`Tugas {tod} acak untuk Anda...`")
     category = event.pattern_match.group(2)
-    category = int(random.choice(category)
+    category = int(choice(category)
                    ) if category else random.choice([1, 2])
     try:
         task = await get_task(tod, category)

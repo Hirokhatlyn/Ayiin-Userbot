@@ -3,6 +3,8 @@
 # Ported by @TeamSecret_Kz (KENZO)
 # WARNING !!
 # Credits by @TeamUltroid, Kraken, Sawan.
+#
+# Recode by : @AyiinXd
 
 from time import sleep
 from userbot import CMD_HANDLER as cmd
@@ -11,8 +13,8 @@ from userbot.utils import ayiin_cmd, edit_or_reply
 
 
 @ayiin_cmd(pattern=r"hack(?: |$)(.*)")
-async def _(event):
-    ayiin = await edit_or_reply(event, "Installing.")
+async def _(kontol):
+    ayiin = await edit_or_reply(kontol, "Installing.")
     await ayiin.edit("Installing..")
     await ayiin.edit("Installing...")
     await ayiin.edit("Installing....")

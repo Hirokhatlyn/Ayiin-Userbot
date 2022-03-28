@@ -1,11 +1,11 @@
 from time import sleep
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, bot
-from userbot.events import ayiin_cmd
+from userbot import CMD_HELP
+from userbot.utils import ayiin_cmd
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"sadboy(?: |$)(.*)"))
+@ayiin_cmd(pattern="sadboy(?: |$)(.*)")
 async def _(event):
     await event.edit("`Pertama-tama kamu cantik`")
     sleep(2)
@@ -17,7 +17,7 @@ async def _(event):
 # Create by myself @localheart
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"punten(?: |$)(.*)"))
+@ayiin_cmd(pattern="punten(?: |$)(.*)")
 async def _(event):
     await event.edit(
         "`\n┻┳|―-∩`"
@@ -31,7 +31,7 @@ async def _(event):
     )
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"pantau(?: |$)(.*)"))
+@ayiin_cmd(pattern="pantau(?: |$)(.*)")
 async def _(event):
     await event.edit(
         "`\n┻┳|―-∩`"

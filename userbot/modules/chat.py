@@ -9,7 +9,7 @@ import csv
 import random
 from datetime import datetime
 from math import sqrt
-from random import choice
+from secrets import choice
 
 from emoji import emojize
 from telethon import functions
@@ -38,12 +38,11 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_input_location
 
-from userbot import BLACKLIST_CHAT
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
 from userbot.events import register
 from userbot.modules.ping import absen
-from userbot.utils import edit_delete, edit_or_reply, get_user_from_event, ayiin_cmd
+from userbot.utils import ayiin_cmd, edit_delete, edit_or_reply, get_user_from_event
 
 
 @ayiin_cmd(pattern="userid$")
@@ -73,8 +72,9 @@ async def permalink(mention):
     if custom:
         await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     else:
-        tag = (user.first_name.replace("\u2060", "")
-               if user.first_name else user.username)
+        tag = (
+            user.first_name.replace("\u2060", "") if user.first_name else user.username
+        )
         await edit_or_reply(mention, f"[{tag}](tg://user?id={user.id})")
 
 
@@ -100,11 +100,11 @@ async def _(event):
             chat, filter=ChannelParticipantsBots
         ):
             if isinstance(x.participant, ChannelParticipantAdmin):
-                mentions += "\n ♕︎ [{}](tg://user?id={}) `{}`".format(
+                mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(
                     x.first_name, x.id, x.id
                 )
             else:
-                mentions += "\n ⍟ [{}](tg://user?id={}) `{}`".format(
+                mentions += "\n ⚜️ [{}](tg://user?id={}) `{}`".format(
                     x.first_name, x.id, x.id
                 )
     except Exception as e:
@@ -112,28 +112,7 @@ async def _(event):
     await edit_or_reply(event, mentions)
 
 
-@ayiin_cmd(pattern="kickme$")
-async def kickme(leave):
-    if leave.chat_id in BLACKLIST_CHAT:
-        return await edit_or_reply(
-            leave, "**Perintah ini Dilarang digunakan di Group ini**"
-        )
-    user = await leave.client.get_me()
-    await edit_or_reply(leave, f"`{user.first_name} has left this group, bye!!`")
-    await leave.client.kick_participant(leave.chat_id, "me")
-
-
-@ayiin_cmd(pattern="kikme$")
-async def kikme(leave):
-    if leave.chat_id in BLACKLIST_CHAT:
-        return await edit_or_reply(
-            leave, "**Perintah ini Dilarang digunakan di Group ini**"
-        )
-    await edit_or_reply(leave, "**GC NYA JELEK GOBLOK KELUAR DULU AH CROTT** 🥴")
-    await leave.client.kick_participant(leave.chat_id, "me")
-
-
-@register(pattern=r"^\Absenall$", own=True)
+@register(pattern=r"^\.absenall$", own=True)
 async def _(event):
     await event.reply(choice(absen))
 
@@ -191,9 +170,8 @@ async def get_chatinfo(event):
 async def fetch_info(chat, event):
     chat_obj_info = await event.client.get_entity(chat.full_chat.id)
     broadcast = (
-        chat_obj_info.broadcast if hasattr(
-            chat_obj_info,
-            "broadcast") else False)
+        chat_obj_info.broadcast if hasattr(chat_obj_info, "broadcast") else False
+    )
     chat_type = "Channel" if broadcast else "Group"
     chat_title = chat_obj_info.title
     warn_emoji = emojize(":warning:")
@@ -248,20 +226,18 @@ async def fetch_info(chat, event):
         if hasattr(chat.full_chat, "participants_count")
         else chat_obj_info.participants_count
     )
-    admins = (chat.full_chat.admins_count if hasattr(
-        chat.full_chat, "admins_count") else None)
+    admins = (
+        chat.full_chat.admins_count if hasattr(chat.full_chat, "admins_count") else None
+    )
     banned_users = (
-        chat.full_chat.kicked_count if hasattr(
-            chat.full_chat,
-            "kicked_count") else None)
+        chat.full_chat.kicked_count if hasattr(chat.full_chat, "kicked_count") else None
+    )
     restrcited_users = (
-        chat.full_chat.banned_count if hasattr(
-            chat.full_chat,
-            "banned_count") else None)
+        chat.full_chat.banned_count if hasattr(chat.full_chat, "banned_count") else None
+    )
     members_online = (
-        chat.full_chat.online_count if hasattr(
-            chat.full_chat,
-            "online_count") else 0)
+        chat.full_chat.online_count if hasattr(chat.full_chat, "online_count") else 0
+    )
     group_stickers = (
         chat.full_chat.stickerset.title
         if hasattr(chat.full_chat, "stickerset") and chat.full_chat.stickerset
@@ -279,8 +255,7 @@ async def fetch_info(chat, event):
         else None
     )
     exp_count = chat.full_chat.pts if hasattr(chat.full_chat, "pts") else None
-    username = chat_obj_info.username if hasattr(
-        chat_obj_info, "username") else None
+    username = chat_obj_info.username if hasattr(chat_obj_info, "username") else None
     bots_list = chat.full_chat.bot_info  # this is a list
     bots = 0
     supergroup = (
@@ -288,12 +263,16 @@ async def fetch_info(chat, event):
         if hasattr(chat_obj_info, "megagroup") and chat_obj_info.megagroup
         else "Tidak"
     )
-    slowmode = ("<b>Yes</b>" if hasattr(chat_obj_info, "slowmode_enabled")
-                and chat_obj_info.slowmode_enabled else "Tidak")
+    slowmode = (
+        "<b>Yes</b>"
+        if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled
+        else "Tidak"
+    )
     slowmode_time = (
-        chat.full_chat.slowmode_seconds if hasattr(
-            chat_obj_info,
-            "slowmode_enabled") and chat_obj_info.slowmode_enabled else None)
+        chat.full_chat.slowmode_seconds
+        if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled
+        else None
+    )
     restricted = (
         "<b>Yes</b>"
         if hasattr(chat_obj_info, "restricted") and chat_obj_info.restricted
@@ -305,8 +284,7 @@ async def fetch_info(chat, event):
         else "Tidak"
     )
     username = "@{}".format(username) if username else None
-    creator_username = "@{}".format(
-        creator_username) if creator_username else None
+    creator_username = "@{}".format(creator_username) if creator_username else None
 
     if admins is None:
         try:
@@ -459,28 +437,28 @@ async def get_users(event):
         return await edit_or_reply(
             event, "**Berikan Link Grup Chat untuk menculik membernya**"
         )
-    yins = await edit_or_reply(event, f"**Mengundang Member Dari Group {ayiin_}**")
-    yinsuserbot = await get_chatinfo(event)
+    ayiin = await edit_or_reply(event, f"**Mengundang Member Dari Group {ayiin_}**")
+    ayiinuserbot = await get_chatinfo(event)
     chat = await event.get_chat()
     if event.is_private:
-        return await yins.edit(
+        return await ayiin.edit(
             "**Tidak bisa Menambahkan Member di sini Harap ketik di Grup Chat**"
         )
     s = 0
     f = 0
     error = "None"
-    await yins.edit("**Terminal Status**\n\n`Sedang Mengumpulkan Pengguna...`")
-    async for user in event.client.iter_participants(yinsuserbot.full_chat.id):
+    await ayiin.edit("**Terminal Status**\n\n`Sedang Mengumpulkan Pengguna...`")
+    async for user in event.client.iter_participants(ayiinuserbot.full_chat.id):
         try:
             await event.client(InviteToChannelRequest(channel=chat, users=[user.id]))
             s += 1
-            await yins.edit(
+            await ayiin.edit(
                 f"**Terminal Running**\n\n• **Menambahkan** `{s}` **orang** \n• **Gagal Menambahkan** `{f}` **orang**\n\n**× LastError:** `{error}`"
             )
         except Exception as e:
             error = str(e)
             f += 1
-    return await yins.edit(
+    return await ayiin.edit(
         f"**Terminal Finished** \n\n• **Berhasil Menambahkan** `{s}` **orang** \n• **Gagal Menambahkan** `{f}` **orang**"
     )
 
@@ -575,24 +553,10 @@ CMD_HELP.update(
 
 CMD_HELP.update(
     {
-        "kickme": f"**Plugin : **`kickme`\
-        \n\n  •  **Syntax :** `{cmd}kickme`\
-        \n  •  **Function : **Keluar grup dengan menampilkan pesan Master has left this group, bye!!\
-        \n\n  •  **Syntax :** `{cmd}leave`\
-        \n  •  **Function : **Keluar grup dengan menampilkan pesan Master Telah Meninggalkan Grup, bye !!\
-        \n\n  •  **Syntax :** `{cmd}kikme`\
-        \n  •  **Function : **Keluar grup dengan menampilkan pesan GC NYA JELEK GOBLOK KELUAR DULU AH CROTT 🥴\
-    "
-    }
-)
-
-
-CMD_HELP.update(
-    {
         "link": f"**Plugin : **`link`\
-        \n\n  •  **Syntax :** `{cmd}link` <username/userid> <opsional teks> (atau) Reply pesan `{cmd}link` <teks opsional>\
+        \n\n  •  **Syntax :** `{cmd}link` <username/userid> <opsional teks> (atau) Reply pesan {cmd}link <teks opsional>\
         \n  •  **Function : **Membuat link permanen ke profil pengguna dengan teks ubah sesuaikan opsional.\
-        \n  •  **Contoh : **`{cmd}link` @Ayiin Ganteng\
+        \n  •  **Contoh : **{cmd}link @AyiinXd Ganteng\
     "
     }
 )

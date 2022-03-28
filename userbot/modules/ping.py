@@ -7,9 +7,10 @@
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # t.me/SharingUserbot & t.me/Lunatic0de
 
-import random
+
 import time
 from datetime import datetime
+from secrets import choice
 
 from speedtest import Speedtest
 
@@ -75,12 +76,6 @@ async def _(ping):
     ayiin = await edit_or_reply(ping, "**▱▱▱▱▱▱▱▱▱▱**")
     await ayiin.edit("**▰▱▱▱▱▱▱▱▱▱**")
     await ayiin.edit("**▰▰▱▱▱▱▱▱▱▱**")
-    await ayiin.edit("**▰▰▰▱▱▱▱▱▱▱**")
-    await ayiin.edit("**▰▰▰▰▱▱▱▱▱▱**")
-    await ayiin.edit("**▰▰▰▰▰▱▱▱▱▱**")
-    await ayiin.edit("**▰▰▰▰▰▰▱▱▱▱**")
-    await ayiin.edit("**▰▰▰▰▰▰▰▱▱▱**")
-    await ayiin.edit("**▰▰▰▰▰▰▰▰▱▱**")
     await ayiin.edit("**▰▰▰▱▱▱▱▱▱▱**")
     await ayiin.edit("**▰▰▰▰▱▱▱▱▱▱**")
     await ayiin.edit("**▰▰▰▰▰▱▱▱▱▱**")
@@ -237,12 +232,12 @@ async def _(pong):
 
 @register(incoming=True, from_users=KONTOL, pattern=r"^Absen$")
 async def ayiinabsen(ganteng):
-    await ganteng.reply(random.choice(absen))
+    await ganteng.reply(choice(absen))
 
 
 @register(incoming=True, from_users=KONTOL, pattern=r"^Ayiin ganteng kan$")
 async def ayiin(ganteng):
-    await ganteng.reply(random.choice(ayiincakep))
+    await ganteng.reply(choice(ayiincakep))
 
 
 # JANGAN DI HAPUS GOBLOK 😡 LU COPY AJA TINGGAL TAMBAHIN

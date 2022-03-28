@@ -2,8 +2,9 @@
 
 from sqlalchemy.exc import IntegrityError
 
-from userbot import CMD_HELP, bot
-from userbot.events import ayiin_cmd
+from userbot import CMD_HANDLER as cmd
+from userbot import CMD_HELP
+from userbot.utils import ayiin_cmd
 
 fban_replies = [
     "New FedBan",
@@ -17,7 +18,7 @@ fban_replies = [
 unfban_replies = ["New un-FedBan", "I'll give", "Un-FedBan"]
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"(d)?fban(?: |$)(.*)"))
+@ayiin_cmd(pattern="(d)?fban(?: |$)(.*)")
 async def fban(event):
     """Bans a user from connected federations."""
     try:
@@ -42,7 +43,7 @@ async def fban(event):
 
     try:
         fban_id = await event.client.get_peer_id(fban_id)
-    except Exception:
+    except BaseException:
         pass
 
     if event.sender_id == fban_id:
@@ -90,7 +91,7 @@ async def fban(event):
     )
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"unfban(?: |$)(.*)"))
+@ayiin_cmd(pattern="unfban(?: |$)(.*)")
 async def unfban(event):
     """Unbans a user from connected federations."""
     try:
@@ -138,7 +139,7 @@ async def unfban(event):
 
                 if all(i not in reply.text for i in unfban_replies):
                     failed.append(i.fed_name)
-        except Exception:
+        except BaseException:
             failed.append(i.fed_name)
 
     reason = reason or "Not specified."
@@ -156,7 +157,7 @@ async def unfban(event):
     )
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"addf(?: |$)(.*)"))
+@ayiin_cmd(pattern="addf(?: |$)(.*)")
 async def addf(event):
     """Adds current chat to connected federations."""
     try:
@@ -176,7 +177,7 @@ async def addf(event):
     await event.edit("**Menambahkan grup ini ke daftar federasi!**")
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"delf$"))
+@ayiin_cmd(pattern="delf$")
 async def delf(event):
     """Removes current chat from connected federations."""
     try:
@@ -188,7 +189,7 @@ async def delf(event):
     await event.edit("**Menghapus grup ini dari daftar federasi!**")
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"listf$"))
+@ayiin_cmd(pattern="listf$")
 async def listf(event):
     """List all connected federations."""
     try:
@@ -208,7 +209,7 @@ async def listf(event):
     await event.edit(msg)
 
 
-@bot.on(ayiin_cmd(outgoing=True, pattern=r"clearf$"))
+@ayiin_cmd(pattern="clearf$")
 async def clearf(event):
     """Removes all chats from connected federations."""
     try:
@@ -222,20 +223,20 @@ async def clearf(event):
 
 CMD_HELP.update(
     {
-        "fban": "**Plugin : **`Federations Banned`\
-        \n\n  •  **Syntax :** `.fban` <id/username/reply> <reason>\
+        "fban": f"**Plugin : **`Federations Banned`\
+        \n\n  •  **Syntax :** `{cmd}fban` <id/username/reply> <reason>\
         \n  •  **Function : **Membanned user dari federasi yang terhubung.\
-        \n\n  •  **Syntax :** `.dfban` <id/username/reply> <reason>\
+        \n\n  •  **Syntax :** `{cmd}dfban` <id/username/reply> <reason>\
         \n  •  **Function : **Membanned user dari federasi yang terhubung dengan menghapus pesan yang dibalas.\
-        \n\n  •  **Syntax :** `.unfban` <id/username/reply> <reason>\
+        \n\n  •  **Syntax :** `{cmd}unfban` <id/username/reply> <reason>\
         \n  •  **Function : **Membatalkan Federations Banned\
-        \n\n  •  **Syntax :** `.addf` <nama>\
+        \n\n  •  **Syntax :** `{cmd}addf` <nama>\
         \n  •  **Function : **Menambahkan grup saat ini dan menyimpannya sebagai <nama> di federasi yang terhubung. Menambahkan satu grup sudah cukup untuk satu federasi.\
-        \n\n  •  **Syntax :** `.delf`\
+        \n\n  •  **Syntax :** `{cmd}delf`\
         \n  •  **Function : **Menghapus grup saat ini dari federasi yang terhubung\
-        \n\n  •  **Syntax :** `.listf`\
+        \n\n  •  **Syntax :** `{cmd}listf`\
         \n  •  **Function : **Mencantumkan semua federasi yang terhubung dengan nama yang ditentukan.\
-        \n\n  •  **Syntax :** `.clearf`\
+        \n\n  •  **Syntax :** `{cmd}clearf`\
         \n  •  **Function : **Menghapus dari semua federasi yang terhubung. Gunakan dengan hati-hati.\
     "
     }

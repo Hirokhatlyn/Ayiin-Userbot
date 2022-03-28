@@ -123,6 +123,7 @@ del _DEVS
 
 SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
 BL_CHAT = {int(x) for x in os.environ.get("BL_CHAT", "").split()}
+BLACKLIST_GCAST = {int(x) for x in os.environ.get("BLACKLIST_GCAST", "").split()}
 
 # For Blacklist Group Support
 BLACKLIST_CHAT = os.environ.get("BLACKLIST_CHAT", None)
@@ -263,7 +264,7 @@ if LASTFM_API and LASTFM_SECRET and LASTFM_USERNAME and LASTFM_PASS:
             username=LASTFM_USERNAME,
             password_hash=LASTFM_PASS,
         )
-    except Exception:
+    except BaseException:
         pass
 
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get(
@@ -294,6 +295,11 @@ while 0 < 6:
     break
 
 del _BLACKLIST
+
+
+ch = str(b64decode("QEF5aWluU3VwcG9ydA=="))[2:17]
+gc = str(b64decode("QEF5aWluWGRTdXBwb3J0"))[2:17]
+
 
 while 0 < 6:
     _WHITELIST = get(

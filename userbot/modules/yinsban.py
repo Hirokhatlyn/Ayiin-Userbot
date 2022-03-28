@@ -1,6 +1,6 @@
 # Port By @VckyouuBitch From GeezProject
 # Perkontolan Dengan Hapus Credits
-# Rewrite By : @AyiinXd
+# Recode By : @AyiinXd
 
 from asyncio import sleep
 from telethon.tl.types import ChatBannedRights

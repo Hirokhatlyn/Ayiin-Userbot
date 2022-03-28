@@ -6,11 +6,9 @@
 """ Userbot help command """
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, ICON_HELP
+from userbot import CMD_HELP, ICON_HELP, ch
 from userbot.utils import edit_delete, edit_or_reply, ayiin_cmd
 from time import sleep
-
-modules = CMD_HELP
 
 
 @ayiin_cmd(pattern="help(?: |$)(.*)")
@@ -18,7 +16,7 @@ async def help(event):
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
-            await edit_or_reply(event, str(CMD_HELP[args]))
+            await edit_or_reply(event, f"{CMD_HELP[args]}\n\n© {ch}")
         else:
             await edit_delete(event, f"**Modules `{args}` Gak Ada Tod**, **Ketik Yang Bener Anj.**")
     else:
@@ -32,7 +30,7 @@ async def help(event):
         await edit_or_reply(
             event,
             f"**[✧ 𝙰𝚈𝙸𝙸𝙽-𝚄𝚂𝙴𝚁𝙱𝙾𝚃 ✧](https://github.com/AyiinXd/Ayiin-Userbot)**\n"
-            f"**߷ 𝙹𝚄𝙼𝙻𝙰𝙷** `{len(modules)}` **Modules**\n"
+            f"**߷ 𝙹𝚄𝙼𝙻𝙰𝙷** `{len(CMD_HELP)}` **Modules**\n"
             f"**♕︎ 𝙾𝚆𝙽𝙴𝚁:** [{user.first_name}](tg://user?id={user.id})\n\n"
             f"{ICON_HELP}   {string}"
             f"\n\n☞  **𝚂𝚄𝙿𝙿𝙾𝚁𝚃** : @AyiinXdSupport\n☞  **𝙽𝙾𝚃𝙴𝚂** :  `{cmd}help yinsubot` **Untuk Melihat Modules Lainnya**"

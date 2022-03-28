@@ -116,7 +116,8 @@ def ayiin_handler(
     **args,
 ):
     def decorator(func):
-        bot.add_event_handler(func, events.NewMessage(**args, incoming=True))
+        if bot:
+            bot.add_event_handler(func, events.NewMessage(**args))
         return func
 
     return decorator

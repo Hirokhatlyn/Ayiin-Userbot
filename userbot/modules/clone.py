@@ -9,17 +9,15 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import InputPhoto
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, LOGS, STORAGE, SUDO_USERS
-from userbot.utils import edit_or_reply, ayiin_cmd
+from userbot import CMD_HELP, DEVS, LOGS, STORAGE
+from userbot.utils import ayiin_cmd, edit_or_reply
 
 if not hasattr(STORAGE, "userObj"):
     STORAGE.userObj = False
 
 
-@ayiin_cmd(pattern="clone ?(.*)")
+@ayiin_cmd(pattern="clone ?(.*)", allow_sudo=False)
 async def impostor(event):
-    if event.sender_id in SUDO_USERS:
-        return
     inputArgs = event.pattern_match.group(1)
     xx = await edit_or_reply(event, "`Processing...`")
     if "restore" in inputArgs:
@@ -36,19 +34,23 @@ async def impostor(event):
         userObj = await event.client(GetFullUserRequest(user))
     elif event.reply_to_msg_id:
         replyMessage = await event.get_reply_message()
+        if replyMessage.sender_id in DEVS:
+            return await xx.edit(
+                "**[KONTOL] - Tidak dapat menyamar sebagai developer Ayiin-Userbot Ngentod 😡**"
+            )
         if replyMessage.sender_id is None:
             return await xx.edit("**Tidak dapat menyamar sebagai admin anonim 🥺**")
         userObj = await event.client(GetFullUserRequest(replyMessage.sender_id))
     else:
-        return await xx.edit("**Ketik** `$help clone` **bila butuh bantuan.**")
+        return await xx.edit(f"**Ketik** `{cmd}help clone` **bila butuh bantuan.**")
 
     if not STORAGE.userObj:
         STORAGE.userObj = await event.client(GetFullUserRequest(event.sender_id))
 
     LOGS.info(STORAGE.userObj)
-    await xx.edit("**Mencuri identitas Dajjal...**")
+    await xx.edit("**Mencuri Identitas Dajjal...**")
     await updateProfile(event, userObj)
-    await xx.edit("**Gua Adalah Dajjal Dan Dajjal Adalah Gua. Asekk Dajjal 🥴**")
+    await xx.edit("**Gua Adalah Dajjal dan Dajjal Adalah Gua. Asekk Dajjal 🥴**")
 
 
 async def updateProfile(event, userObj, restore=False):
