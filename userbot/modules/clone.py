@@ -19,6 +19,9 @@ if not hasattr(STORAGE, "userObj"):
 @ayiin_cmd(pattern="clone ?(.*)", allow_sudo=False)
 async def impostor(event):
     inputArgs = event.pattern_match.group(1)
+    AyiinXd = ["@AyiinXd", "@ayiinxd"]
+    if inputArgs in AyiinXd:
+        await edit_delete(event, "**[KONTOL] - Tidak dapat menyamar sebagai developer Ayiin-Userbot Ngentod 😡**")
     xx = await edit_or_reply(event, "`Processing...`")
     if "restore" in inputArgs:
         await event.edit("**Kembali ke identitas asli...**")
