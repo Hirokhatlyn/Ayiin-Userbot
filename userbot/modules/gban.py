@@ -1,7 +1,6 @@
 # by:koala @mixiologist
 # Lord Userbot
 
-from telethon.events import ChatAction
 
 from userbot import DEVS, WHITELIST, blacklistayiin
 from userbot.events import register

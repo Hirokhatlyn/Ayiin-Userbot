@@ -24,7 +24,7 @@ async def welcome_to_chat(event):
         )
     except AttributeError:
         return
-    if cws := get_current_welcome_settings(event.chat_id): 
+    if cws := get_current_welcome_settings(event.chat_id):
         if (event.user_joined or event.user_added) and not (await event.get_user()).bot:
             if CLEAN_WELCOME:
                 try:

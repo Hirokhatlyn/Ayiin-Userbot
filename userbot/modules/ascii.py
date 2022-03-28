@@ -93,7 +93,8 @@ async def asciiart(IMG, color1, color2, bgcolor):
     img = np.sum(np.asarray(img), axis=2)
     img -= img.min()
     img = (1.0 - img / img.max()) ** 2.2 * (chars.size - 1)
-    lines = ("\n".join(("".join(r) for r in chars[img.astype(int)]))).split("\n")
+    lines = ("\n".join(("".join(r)
+             for r in chars[img.astype(int)]))).split("\n")
     nbins = len(lines)
     colorRange = list(Color(color1).range_to(Color(color2), nbins))
     newImg_width = letter_width * widthByLetter
@@ -112,9 +113,8 @@ async def asciiart(IMG, color1, color2, bgcolor):
 
 # this is from userge
 async def random_color():
-    return [
-        "#" + "".join(choice("0123456789ABCDEF") for k in range(6)) for i in range(2)
-    ]
+    return ["#" + "".join(choice("0123456789ABCDEF")
+                          for k in range(6)) for i in range(2)]
 
 
 @ayiin_cmd(pattern="asciibg(?: |$)(.*)")

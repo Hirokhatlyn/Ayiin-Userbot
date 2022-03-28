@@ -14,7 +14,6 @@ import asyncio
 import os
 
 import heroku3
-from requests import get
 from telethon.errors import FloodWaitError
 
 from userbot import BLACKLIST_GCAST
@@ -78,7 +77,7 @@ async def gcast(event):
 
 @ayiin_cmd(pattern="gucast(?: |$)(.*)")
 async def gucast(event):
-    if xx := event.pattern_match.group(1): 
+    if xx := event.pattern_match.group(1):
         msg = xx
     elif event.is_reply:
         msg = await event.get_reply_message()
